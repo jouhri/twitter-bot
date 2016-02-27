@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec::Matchers.define :have_mention do |mention|
   match do |tweets|
-    tweets.all?{|tweet| tweet.text.include?(mention)}
+    !tweets.blank?  && tweets.all?{|tweet| tweet.text.include?(mention)}
   end
 end
 
