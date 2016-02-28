@@ -70,6 +70,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    faker (1.6.1)
+      i18n (~> 0.5)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
@@ -200,6 +202,8 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     shellany (0.0.1)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
     simple_oauth (0.3.1)
     slop (3.6.0)
     spring (1.6.3)
@@ -251,6 +255,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.1.0)
   factory_girl_rails
+  faker
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
@@ -258,6 +263,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  shoulda-matchers (~> 3.1)
   spring
   sqlite3
   turbolinks

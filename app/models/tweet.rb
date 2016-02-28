@@ -1,4 +1,7 @@
 class Tweet < ActiveRecord::Base
+  validates_length_of :text, maximum: 140
+  validates :tweet_id,  :date, :user_name, :user_id, presence: true
+  validates :tweet_id, :user_id, uniqueness: true, case_sensitive: false
 
   scope :recent, -> {order("date DESC").limit(20) } 
 
