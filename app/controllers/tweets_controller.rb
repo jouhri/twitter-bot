@@ -3,8 +3,12 @@ class TweetsController < ApplicationController
     @raw_data = mentions_timeline
     unless @error
       Tweet.store_tweets(@raw_data)
-      @tweets = Tweet.fetch_mentions(params[:min_id]||0)
-      render json: @tweets 
+      @tweets = Tweet.fetch_mentions(params[:max_id])
+      cookies[:max_id] = @tweets.last.tweet_id if @tweets && @tweets.last
+      respond_to do |format|
+        format.json {render json: @tweets}
+        format.html {render partial: "tweets_list" } 
+      end
     else
       render json: {error: @error.message}
     end
@@ -26,7 +30,7 @@ class TweetsController < ApplicationController
   private
 
   def mentions_timeline
-    max_id = params.include?(:max_id) ? { max_id: params[:max_id] } : {} 
+    max_id = params[:max_id].blank? ? {} : { max_id: params[:max_id] } 
 
     begin
       twitter.mentions_timeline(max_id)

@@ -21,8 +21,11 @@ RSpec.describe Tweet, type: :model do
   it {should respond_to(:user_name)}
   it {should validate_presence_of(:user_name)}
 
+  it {should respond_to(:screen_name)}
+  it {should validate_presence_of(:screen_name)}
+
+
   it {should respond_to(:user_id)}
   it {should validate_presence_of(:user_id)}
-  it {should validate_uniqueness_of(:user_id).case_insensitive}
 
 end

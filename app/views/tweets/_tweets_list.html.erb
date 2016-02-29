@@ -1,0 +1,20 @@
+<% unless @error %>
+  <% @tweets.each do |tweet| %>
+    <span class="tweet-card">
+      <p><%= tweet.user_name  %></p>
+      <p><%= tweet.text%></p>
+      <p><%= tweet.date %></p>
+      <button class="btn-reply" >Reply</button>
+      <div class="reply-box" style="display:none">  
+        <%= form_tag('tweets/reply', methiod: :post, remote: true) do%>
+          <%= text_area_tag "text", "@#{tweet.screen_name}", maxlength: 140, class: "tweet-message" %>
+          <p class="nb-character" >0</p>
+          <%= hidden_field_tag "tweet_id", tweet.tweet_id  %>
+          <%= submit_tag "send", class: "send-tweet-reply"  %>
+        <% end %>
+      </div>
+    </span>
+  <% end %>
+<% else %>
+  <p><%= @error.message   %><p>
+<% end %>

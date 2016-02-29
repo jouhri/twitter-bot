@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+body
+{
+  background-color: whitesmoke;
+}
+
+
+.tweet-card
+{
+  width: 30%;
+  display: inline-block;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+  border-radius: 3px;
+  padding:5px;
+  vertical-align: top;
+}
