@@ -25,12 +25,12 @@ RSpec.describe TweetsController, type: :controller do
     it "returns list of older mention after a second call" do
       get :mentions
       first_tweets = assigns(:tweets)
-      get :mentions, max_id: first_tweets.last.id, min_id: first_tweets.first.id
+      get :mentions, max_id: first_tweets.last.id
       assigns(:tweets).should_not eql(first_tweets) 
     end
     
-    it "returns list of older mention after a second call" do
-      get :mentions, max_id: 99999, min_id: 89889898989
+    it "returns empty list with invalid max_id " do
+      get :mentions, max_id: 99999
       assigns(:tweets).to_a.should eql([]) 
     end
 
@@ -47,7 +47,7 @@ RSpec.describe TweetsController, type: :controller do
     it "reply to mention tweet" do
       get :mentions
       tweet = assigns(:tweets).first
-      post :reply, tweet_id: tweet.tweet_id, text: "yo boby @wall831"
+      post :reply, tweet_id: tweet.tweet_id, text: "yo boby"
       assigns(:tweet).id.to_s  == tweet.tweet_id
     end
 
