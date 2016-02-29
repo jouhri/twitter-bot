@@ -3,8 +3,6 @@ class Tweet < ActiveRecord::Base
   validates :tweet_id,  :date, :user_name, :screen_name, :user_id, presence: true
   validates :tweet_id, uniqueness: true, case_sensitive: false
 
-  scope :recent, -> {order("date DESC").limit(20) } 
-
   def self.fetch_mentions(max_id)
     unless max_id.blank?
       Tweet.order("tweet_id DESC").where(" tweet_id < ? ", max_id).limit(20)
